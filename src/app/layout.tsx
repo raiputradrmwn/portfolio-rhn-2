@@ -3,6 +3,7 @@ import "./globals.css";
 import { poppins } from "@/style/font";
 import { BottomBar } from "@/components/BottomBar";
 import Navbar from "@/components/Navbar";
+import { FloatingDockDemo } from "@/components/FloatingDock";
 
 
 export const metadata: Metadata = {
@@ -22,7 +23,8 @@ export default function RootLayout({
       >
         <Navbar/>
         {children}
-        <BottomBar/>
+?
+        <FloatingDockDemo />
       </body>
     </html>
   );
