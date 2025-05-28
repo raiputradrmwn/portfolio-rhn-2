@@ -24,6 +24,7 @@ import {
   SiGithub,
   SiReactrouter,
   SiJson,
+  SiBun,
 } from "react-icons/si";
 
 const iconSize = '100%'
@@ -57,6 +58,7 @@ export const STACKS: stacksProps = {
   'Node JS': <SiNodedotjs size={iconSize} color="#16a34a" />,
   Github: <SiGithub size={iconSize} color="#000" />,
   'React Router': <SiReactrouter size={iconSize} color="#ec4899" />,
-  Json: <SiJson size={iconSize} color="#374151" />
+  Json: <SiJson size={iconSize} color="#374151" />,
+  Bun:<SiBun size={iconSize} color="#FBF0DF" />
 };
 

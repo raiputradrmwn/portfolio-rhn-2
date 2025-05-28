@@ -23,5 +23,6 @@ export const SKILLS = [
   'React Router',
   'React Native',
   'Expo',
-  'Json'
+  'Json',
+  'Bun'
 ];
