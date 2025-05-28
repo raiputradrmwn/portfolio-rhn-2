@@ -13,27 +13,27 @@ export function FloatingDockDemo() {
   const links = [
     {
       title: "Home",
-      icon: <IconHome className="h-full w-full text-gray-500" />,
+      icon: <IconHome className="h-full w-full text-gray-700" />,
       href: "#home",
     },
     {
       title: "Skills",
-      icon: <IconCode className="h-full w-full text-gray-500" />,
+      icon: <IconCode className="h-full w-full text-gray-700" />,
       href: "#skills",
     },
     {
       title: "Career",
-      icon: <IconBriefcase2 className="h-full w-full text-gray-500" />,
+      icon: <IconBriefcase2 className="h-full w-full text-gray-700" />,
       href: "#career",
     },
     {
       title: "Projects",
-      icon: <IconClipboardCheck className="h-full w-full text-gray-500" />,
+      icon: <IconClipboardCheck className="h-full w-full text-gray-700" />,
       href: "#projects",
     },
     {
       title: "Contact",
-      icon: <IconMail className="h-full w-full text-gray-500" />,
+      icon: <IconMail className="h-full w-full text-gray-700" />,
       href: "#contact",
     },
   ];
