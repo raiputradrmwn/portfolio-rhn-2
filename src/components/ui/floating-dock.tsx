@@ -8,22 +8,33 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-
 import { useRef, useState } from "react";
+
+interface FloatingDockProps {
+  items: { title: string; icon: React.ReactNode; href: string }[];
+  desktopClassName?: string;
+  mobileClassName?: string;
+  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+}
 
 export const FloatingDock = ({
   items,
   desktopClassName,
   mobileClassName,
-}: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
-  desktopClassName?: string;
-  mobileClassName?: string;
-}) => {
+  onLinkClick,
+}: FloatingDockProps) => {
   return (
     <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
+      <FloatingDockDesktop
+        items={items}
+        className={desktopClassName}
+        onLinkClick={onLinkClick}
+      />
+      <FloatingDockMobile
+        items={items}
+        className={mobileClassName}
+        onLinkClick={onLinkClick}
+      />
     </>
   );
 };
@@ -31,11 +42,14 @@ export const FloatingDock = ({
 const FloatingDockMobile = ({
   items,
   className,
+  onLinkClick,
 }: {
   items: { title: string; icon: React.ReactNode; href: string }[];
   className?: string;
+  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className={cn("relative block md:hidden", className)}>
       <AnimatePresence>
@@ -48,10 +62,7 @@ const FloatingDockMobile = ({
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={{
                   opacity: 0,
                   y: 10,
@@ -63,7 +74,10 @@ const FloatingDockMobile = ({
               >
                 <a
                   href={item.href}
-                  key={item.title}
+                  onClick={(e) => {
+                    if (onLinkClick) onLinkClick(e, item.href);
+                    setOpen(false);
+                  }}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
                 >
                   <div className="h-4 w-4">{item.icon}</div>
@@ -76,6 +90,7 @@ const FloatingDockMobile = ({
       <button
         onClick={() => setOpen(!open)}
         className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
+        aria-label="Toggle menu"
       >
         <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
       </button>
@@ -86,22 +101,30 @@ const FloatingDockMobile = ({
 const FloatingDockDesktop = ({
   items,
   className,
+  onLinkClick,
 }: {
   items: { title: string; icon: React.ReactNode; href: string }[];
   className?: string;
+  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) => {
   let mouseX = useMotionValue(Infinity);
+
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto hidden h-14 items-end gap-4 rounded-xl bg-gray-50 px-4 pb-3 md:flex dark:bg-neutral-900",
-        className,
+        className
       )}
     >
       {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        <IconContainer
+          mouseX={mouseX}
+          key={item.title}
+          {...item}
+          onLinkClick={onLinkClick}
+        />
       ))}
     </motion.div>
   );
@@ -112,24 +135,24 @@ function IconContainer({
   title,
   icon,
   href,
+  onLinkClick,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
   href: string;
+  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) {
   let ref = useRef<HTMLDivElement>(null);
 
   let distance = useTransform(mouseX, (val) => {
     let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
     return val - bounds.x - bounds.width / 2;
   });
-let widthTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
-let heightTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
-let widthTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
-let heightTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
-
+  let widthTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
+  let heightTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
+  let widthTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
+  let heightTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
 
   let width = useSpring(widthTransform, {
     mass: 0.1,
@@ -155,8 +178,14 @@ let heightTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
 
   const [hovered, setHovered] = useState(false);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith("#") && onLinkClick) {
+      onLinkClick(e, href);
+    }
+  };
+
   return (
-    <a href={href}>
+    <a href={href} onClick={handleClick} role="link" tabIndex={0}>
       <motion.div
         ref={ref}
         style={{ width, height }}

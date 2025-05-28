@@ -21,8 +21,7 @@ export default function CareerCard({
   isLast = false,
 }: CareerCardProps) {
   return (
-    <div className="flex gap-5 items-start relative">
-      {/* Logo dan garis vertikal */}
+    <div className="flex gap-5 items-start relative mt-10">
       <div className="flex flex-col items-center">
         <div className="flex-shrink-0">
           <div className="w-14 h-14 rounded-full border-2 border-neutral-200 bg-white flex items-center justify-center overflow-hidden relative z-10">
@@ -39,8 +38,6 @@ export default function CareerCard({
           <div className="w-px bg-gray-300 flex-1 mt-2"></div>
         )}
       </div>
-
-
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center gap-1">
           <span className="font-semibold text-neutral-900">{company}</span>
