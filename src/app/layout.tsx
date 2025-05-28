@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/style/font";
-import { BottomBar } from "@/components/BottomBar";
 import Navbar from "@/components/Navbar";
 import { FloatingDockDemo } from "@/components/FloatingDock";
 
@@ -23,7 +22,6 @@ export default function RootLayout({
       >
         <Navbar/>
         {children}
-?
         <FloatingDockDemo />
       </body>
     </html>
