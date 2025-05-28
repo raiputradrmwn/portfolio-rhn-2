@@ -3,7 +3,7 @@ import React from "react";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import {
   IconHome,
-  IconBriefcase,
+  IconBriefcase2,
   IconCode,
   IconClipboardCheck,
   IconMail,
@@ -18,18 +18,18 @@ export function FloatingDockDemo() {
     },
     {
       title: "Career",
-      icon: <IconBriefcase className="h-full w-full text-gray-500" />,
+      icon: <IconBriefcase2 className="h-full w-full text-gray-500" />,
       href: "#career",
-    },
-    {
-      title: "Projects",
-      icon: <IconClipboardCheck className="h-full w-full text-gray-500" />,
-      href: "#projects",
     },
     {
       title: "Skills",
       icon: <IconCode className="h-full w-full text-gray-500" />,
       href: "#skills",
+    },
+    {
+      title: "Projects",
+      icon: <IconClipboardCheck className="h-full w-full text-gray-500" />,
+      href: "#projects",
     },
     {
       title: "Contact",
