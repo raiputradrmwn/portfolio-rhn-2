@@ -107,7 +107,7 @@ const FloatingDockDesktop = ({
   className?: string;
   onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) => {
-  let mouseX = useMotionValue(Infinity);
+  const mouseX = useMotionValue(Infinity);
 
   return (
     <motion.div
@@ -143,34 +143,34 @@ function IconContainer({
   href: string;
   onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) {
-  let ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
-  let widthTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
-  let heightTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
-  let widthTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
-  let heightTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
+  const widthTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
+  const heightTransform = useTransform(distance, [-120, 0, 120], [35, 70, 35]);
+  const widthTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
+  const heightTransformIcon = useTransform(distance, [-120, 0, 120], [20, 40, 20]);
 
-  let width = useSpring(widthTransform, {
+  const width = useSpring(widthTransform, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
   });
-  let height = useSpring(heightTransform, {
+  const height = useSpring(heightTransform, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
   });
 
-  let widthIcon = useSpring(widthTransformIcon, {
+  const widthIcon = useSpring(widthTransformIcon, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
   });
-  let heightIcon = useSpring(heightTransformIcon, {
+  const heightIcon = useSpring(heightTransformIcon, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,

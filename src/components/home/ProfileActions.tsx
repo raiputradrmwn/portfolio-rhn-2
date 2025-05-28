@@ -1,8 +1,6 @@
-// components/profile/ProfileActions.tsx
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { FiDownload, FiMail } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
 export function ProfileActions() {

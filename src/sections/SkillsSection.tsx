@@ -1,6 +1,5 @@
 'use client'
 
-import { SKILLS } from "@/lib/skill-data";
 import { motion } from "framer-motion";
 import {
   IconCode,

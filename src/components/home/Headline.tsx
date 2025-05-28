@@ -10,7 +10,7 @@ export function Headline() {
         >
             <div className="mt-6 text-center">
                 <h1 className="font-reguler text-xl sm:text-2xl mb-2">
-                    Hi, I'm Raihan Putra Darmawan<span className="inline-block">👋</span>
+                    Hi, I&apos;m Raihan Putra Darmawan<span className="inline-block">👋</span>
                 </h1>
                 <h2 className="font-reguler text-xl sm:text-2xl mb-2">
                     Web &amp; Mobile App Developer &middot; <br className="sm:hidden" />
