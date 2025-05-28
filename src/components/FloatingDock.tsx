@@ -17,14 +17,14 @@ export function FloatingDockDemo() {
       href: "#home",
     },
     {
-      title: "Career",
-      icon: <IconBriefcase2 className="h-full w-full text-gray-500" />,
-      href: "#career",
-    },
-    {
       title: "Skills",
       icon: <IconCode className="h-full w-full text-gray-500" />,
       href: "#skills",
+    },
+    {
+      title: "Career",
+      icon: <IconBriefcase2 className="h-full w-full text-gray-500" />,
+      href: "#career",
     },
     {
       title: "Projects",

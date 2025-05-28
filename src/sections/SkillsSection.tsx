@@ -14,7 +14,7 @@ export default function SkillsSection() {
   const stacksInArray: Array<[string, JSX.Element]> = Object.entries(STACKS).sort(() => Math.random() - 0.5);
 
   return (
-    <section id="skills" className="max-w-3xl mx-auto px-6 py-16 scroll-mt-24 mt-10">
+    <section id="skills" className="max-w-3xl mx-auto px-6 py-16 scroll-mt-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

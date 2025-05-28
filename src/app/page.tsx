@@ -8,9 +8,9 @@ export default function Home() {
     <div className="px-4 sm:px-6 lg:px-8">
       <HomeSection />
       <SectionDivider />
-      <CareerSection />
-      <SectionDivider />
       <SkillsSection />
+      <SectionDivider />
+      <CareerSection />
       <SectionDivider />
     </div>
   );

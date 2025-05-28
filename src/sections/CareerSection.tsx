@@ -7,13 +7,13 @@ import { motion } from "framer-motion";
 
 export default function CareerSection() {
     return (
-        <section id="career" className="py-16 mb-28 sm:mb-0 scroll-mt-[150rem] max-w-3xl mx-auto px-6">
+        <section id="career" className="py-16 mb-28 sm:mb-0 max-w-3xl mx-auto px-6 mt-10">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38 }}
             >
-                <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
+                <h2 className="text-2xl font-bold mb-8 flex items-center gap-2 ">
                     <IconBriefcase2 size={28} />
                     Career
                 </h2>
