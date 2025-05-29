@@ -25,7 +25,7 @@ export function ProfileImage() {
             priority
           />
         </div>
-      <div className="absolute top-40 right-[-50px] bg-white rounded-md px-3 py-1 shadow-lg flex items-center gap-2 text-sm font-medium">
+      <div className="absolute top-40 right-[-30px] bg-white rounded-md px-2 shadow-lg flex items-center gap-2 text-sm font-medium">
         <span>Its me Raput</span>
         <span className="text-2xl">👋</span>
       </div>
