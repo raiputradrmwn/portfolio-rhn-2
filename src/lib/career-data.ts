@@ -12,12 +12,21 @@ export interface CareerItem {
 
 export const careerList: CareerItem[] = [
     {
+        id: "langit-biru",
+        company: "Biru Langit",
+        logo: "/icon/birulangit.jpg",
+        position: "Frontend Developer",
+        type: "Internship",
+        period: "Jun 2025 - Present",
+        description: " "
+    },
+    {
         id: "cyber-psl",
         company: "Cyber Physical System Laboratory",
         logo: "/icon/cps.png",
         position: "Assistant Coordinator",
         type: "Contract",
-        period: "Jun 2024 - Present",
+        period: "Jun 2024 - Jun 2025",
         description: "Led and coordinated 48+ members across Practicum and Research divisions, implementing Agile practices for efficient project execution and external collaboration."
     },
     {
