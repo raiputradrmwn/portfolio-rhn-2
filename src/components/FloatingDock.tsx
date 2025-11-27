@@ -26,16 +26,16 @@ export function FloatingDockDemo() {
       icon: <IconBriefcase2 className="h-full w-full text-gray-700" />,
       href: "#career",
     },
-    {
-      title: "Projects",
-      icon: <IconClipboardCheck className="h-full w-full text-gray-700" />,
-      href: "#projects",
-    },
-    {
-      title: "Contact",
-      icon: <IconMail className="h-full w-full text-gray-700" />,
-      href: "#contact",
-    },
+    // {
+    //   title: "Projects",
+    //   icon: <IconClipboardCheck className="h-full w-full text-gray-700" />,
+    //   href: "#projects",
+    // },
+    // {
+    //   title: "Contact",
+    //   icon: <IconMail className="h-full w-full text-gray-700" />,
+    //   href: "#contact",
+    // },
   ];
   const handleScrollWithOffset = (
     e: React.MouseEvent<HTMLAnchorElement>,

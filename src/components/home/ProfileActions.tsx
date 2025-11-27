@@ -29,11 +29,6 @@ export function ProfileActions() {
             >
                 <FaGithub size={38} />
             </Link>
-            <Button asChild className="group bg-[#B80C09] text-white px-8 py-4 text-md font-regular hover:bg-[#B80C09]/90 transition-colors duration-200">
-                <Link href="contact">
-                    Hire Me
-                </Link>
-            </Button>
         </motion.div>
     );
 }

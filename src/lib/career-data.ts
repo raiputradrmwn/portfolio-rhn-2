@@ -17,8 +17,8 @@ export const careerList: CareerItem[] = [
         logo: "/icon/birulangit.jpg",
         position: "Frontend Developer",
         type: "Internship",
-        period: "Jun 2025 - Present",
-        description: " "
+        period: "Jun 2025 - Present · 6 mos",
+        description: "Led the migration from JSX to TSX, improving type safety and maintainability. Managed real-time data fetching with WebSocket, ensuring seamless updates and performance. Integrated RESTful APIs into the frontend, enabling smooth data flow for AQMS systems. Worked closely with development teams to implement features and maintain consistency across modules."
     },
     {
         id: "cyber-psl",
