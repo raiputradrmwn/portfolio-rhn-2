@@ -5,8 +5,6 @@ import {
   IconHome,
   IconBriefcase2,
   IconCode,
-  IconClipboardCheck,
-  IconMail,
 } from "@tabler/icons-react";
 
 export function FloatingDockDemo() {
