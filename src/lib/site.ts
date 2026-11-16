@@ -23,25 +23,6 @@ export const navLinks = [
   { id: "contact", label: "Contact" },
 ];
 
-export const skillGroups = [
-  {
-    title: "Frontend",
-    items: ["HTML", "CSS", "JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind CSS", "Bootstrap", "Vue.js", "Shadcn UI"],
-  },
-  {
-    title: "Backend & Data",
-    items: ["Go", "Node.js", "Express.js", "Laravel", "PostgreSQL", "MySQL", "REST API", "WebSocket", "Postman"],
-  },
-  {
-    title: "Ops & Cloud",
-    items: ["Kubernetes (kubectl)", "Tencent Cloud (TKE, CLS, APM)", "Grafana", "ArgoCD", "GitLab CI/CD", "Linux", "Monitoring & Alerting", "Incident Management", "Root Cause Analysis"],
-  },
-  {
-    title: "Mobile, IoT & Tools",
-    items: ["Kotlin", "ESP32 / ESP8266", "Arduino UNO", "Git", "Figma"],
-  },
-];
-
 export const education = [
   {
     school: "Telkom University",
