@@ -11,7 +11,7 @@ import {
 import { useRef, useState } from "react";
 
 interface FloatingDockProps {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: { title: string; icon: React.ReactNode; href: string; active?: boolean }[];
   desktopClassName?: string;
   mobileClassName?: string;
   onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
@@ -44,7 +44,7 @@ const FloatingDockMobile = ({
   className,
   onLinkClick,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: { title: string; icon: React.ReactNode; href: string; active?: boolean }[];
   className?: string;
   onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) => {
@@ -78,7 +78,11 @@ const FloatingDockMobile = ({
                     if (onLinkClick) onLinkClick(e, item.href);
                     setOpen(false);
                   }}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
+                  aria-label={item.title}
+                  className={cn(
+                    "flex h-11 w-11 items-center justify-center rounded-full border border-border shadow-md backdrop-blur-xl",
+                    item.active ? "bg-brand text-brand-foreground" : "bg-background/90 text-foreground"
+                  )}
                 >
                   <div className="h-4 w-4">{item.icon}</div>
                 </a>
@@ -89,10 +93,11 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background/80 shadow-lg backdrop-blur-xl"
         aria-label="Toggle menu"
+        aria-expanded={open}
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className="h-5 w-5 text-muted-foreground" />
       </button>
     </div>
   );
@@ -103,7 +108,7 @@ const FloatingDockDesktop = ({
   className,
   onLinkClick,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: { title: string; icon: React.ReactNode; href: string; active?: boolean }[];
   className?: string;
   onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }) => {
@@ -114,7 +119,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden h-14 items-end gap-4 rounded-xl bg-gray-50 px-4 pb-3 md:flex dark:bg-neutral-900",
+        "mx-auto hidden h-16 items-end gap-3 rounded-2xl border border-border bg-background/70 px-4 pb-3 shadow-lg shadow-black/5 backdrop-blur-xl md:flex",
         className
       )}
     >
@@ -135,9 +140,11 @@ function IconContainer({
   title,
   icon,
   href,
+  active,
   onLinkClick,
 }: {
   mouseX: MotionValue;
+  active?: boolean;
   title: string;
   icon: React.ReactNode;
   href: string;
@@ -185,13 +192,16 @@ function IconContainer({
   };
 
   return (
-    <a href={href} onClick={handleClick} role="link" tabIndex={0}>
+    <a href={href} onClick={handleClick} aria-label={title} aria-current={active ? "true" : undefined}>
       <motion.div
         ref={ref}
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800"
+        className={cn(
+          "relative flex aspect-square items-center justify-center rounded-full transition-colors",
+          active ? "bg-brand text-brand-foreground" : "bg-muted text-foreground"
+        )}
       >
         <AnimatePresence>
           {hovered && (
@@ -199,7 +209,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs whitespace-pre text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white"
+              className="absolute -top-8 left-1/2 w-fit rounded-md border border-border bg-background px-2 py-0.5 text-xs whitespace-pre text-foreground"
             >
               {title}
             </motion.div>

@@ -1,46 +1,44 @@
-'use client'
-
-import { motion } from "framer-motion";
-import {
-  IconCode,
-} from "@tabler/icons-react";
-import SkillCard from "@/components/skill/SkillCard";
-import { STACKS } from "@/lib/skill-icon";
-import { JSX } from "react";
+"use client";
+import { useMemo } from "react";
 import MarqueeElement from "@/components/MarqueeElement";
+import SkillCard from "@/components/skill/SkillCard";
+import { Reveal, SectionHeading } from "@/components/Reveal";
+import { STACKS } from "@/lib/skill-icon";
+import { skillGroups } from "@/lib/site";
 
 export default function SkillsSection() {
-  const stacksInArray: Array<[string, JSX.Element]> = Object.entries(STACKS).sort(() => Math.random() - 0.5);
+  const stacks = useMemo(() => Object.entries(STACKS), []);
 
   return (
-    <section id="skills" className="max-w-3xl mx-auto px-6 py-16 scroll-mt-24">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.38 }}
-      >
-        <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
-          <IconCode size={28} />
-          Skills
-        </h2>
-        <p className="mt-2 mb-8 text-gray-600">My coding skills</p>
+    <section id="skills" className="scroll-mt-24 py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <SectionHeading title="Skills" />
+      </div>
 
-        <div className="flex flex-col space-y-1">
-          {Array.from({ length: 2 }, (_, index) => {
-            const slider = [...stacksInArray].sort(() => Math.random() - 0.5);
-            return (
-              <MarqueeElement
-                key={index}
-                direction={index % 2 === 0 ? "left" : "right"}
-              >
-                {slider.map(([name, icon]) => (
-                  <SkillCard key={name} name={name} icon={icon} />
-                ))}
-              </MarqueeElement>
-            );
-          })}
-        </div>
-      </motion.div>
+      <Reveal className="[mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
+        {[0, 1].map((row) => (
+          <MarqueeElement key={row} direction={row === 0 ? "left" : "right"}>
+            {(row === 0 ? stacks : [...stacks].reverse()).map(([name, icon]) => (
+              <SkillCard key={name} name={name} icon={icon} />
+            ))}
+          </MarqueeElement>
+        ))}
+      </Reveal>
+
+      <div className="mx-auto mt-12 grid max-w-6xl gap-4 px-5 sm:grid-cols-2 sm:px-8">
+        {skillGroups.map((g, i) => (
+          <Reveal key={g.title} delay={i * 0.06} className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-sm font-semibold text-muted-foreground">{g.title}</h3>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {g.items.map((s) => (
+                <li key={s} className="rounded-full bg-muted px-3 py-1.5 text-sm">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

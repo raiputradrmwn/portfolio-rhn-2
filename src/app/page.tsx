@@ -1,17 +1,20 @@
-import SectionDivider from "@/components/section-div";
+import AboutSection from "@/sections/AboutSection";
 import CareerSection from "@/sections/CareerSection";
+import ContactSection from "@/sections/ContactSection";
+import EducationSection from "@/sections/EducationSection";
 import HomeSection from "@/sections/HomeSection";
 import SkillsSection from "@/sections/SkillsSection";
 
 export default function Home() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <>
       <HomeSection />
-      <SectionDivider />
-      <SkillsSection />
-      <SectionDivider />
+      <AboutSection />
       <CareerSection />
-      <SectionDivider />
-    </div>
+      {/* <ProjectsSection /> disembunyikan dulu, tinggal aktifkan lagi */}
+      <SkillsSection />
+      <EducationSection />
+      <ContactSection />
+    </>
   );
 }
