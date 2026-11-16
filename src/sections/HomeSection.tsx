@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { IconArrowUpRight, IconDownload, IconMapPin } from "@tabler/icons-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { site } from "@/lib/site";
@@ -60,20 +60,27 @@ function RotatingWord() {
     return () => clearInterval(t);
   }, [reduce]);
 
+  // Semua kata ditumpuk di satu sel grid: lebar = kata terpanjang, tidak pernah saling timpa.
   return (
-    <span className="relative inline-block overflow-hidden align-top">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={WORDS[i]}
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.5, ease: EASE }}
-          className="inline-block text-foreground"
-        >
-          {WORDS[i]}.
-        </motion.span>
-      </AnimatePresence>
+    <span className="relative inline-grid overflow-hidden whitespace-nowrap align-bottom">
+      {WORDS.map((w, k) => {
+        const state = k === i ? "in" : k === (i - 1 + WORDS.length) % WORDS.length ? "out" : "wait";
+        return (
+          <motion.span
+            key={w}
+            aria-hidden={k !== i}
+            className="text-foreground [grid-area:1/1]"
+            initial={false}
+            animate={{
+              y: state === "in" ? "0%" : state === "out" ? "-110%" : "110%",
+              opacity: state === "in" ? 1 : 0,
+            }}
+            transition={{ duration: state === "wait" ? 0 : 0.5, ease: EASE }}
+          >
+            {w}.
+          </motion.span>
+        );
+      })}
     </span>
   );
 }
