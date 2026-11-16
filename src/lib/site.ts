@@ -6,7 +6,7 @@ export const site = {
   shortName: "rd.",
   role: "Software Engineer, moving into DevOps & Cloud",
   tagline:
-    "I've built frontends in Next.js and backends in Go. Now I spend my days on Kubernetes, Grafana and CI/CD pipelines.",
+    "I've built frontends in Next.js and backends in Go. These days I support production apps on Kubernetes.",
   location: "Tangerang, Indonesia",
   email: "raihanrrdarmawan@gmail.com",
   linkedin: "https://www.linkedin.com/in/raihanputrad/",

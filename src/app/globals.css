@@ -134,3 +134,5 @@
 :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; border-radius: 6px; }
 
 ::selection { background: hsl(var(--brand) / 0.3); }
+
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
